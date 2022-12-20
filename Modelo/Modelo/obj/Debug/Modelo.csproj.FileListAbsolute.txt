@@ -1,0 +1,6 @@
+C:\Quark\QuarkCotizaciones\Modelo\Modelo\bin\Debug\Modelo.dll
+C:\Quark\QuarkCotizaciones\Modelo\Modelo\bin\Debug\Modelo.pdb
+C:\Quark\QuarkCotizaciones\Modelo\Modelo\obj\Debug\Modelo.csproj.AssemblyReference.cache
+C:\Quark\QuarkCotizaciones\Modelo\Modelo\obj\Debug\Modelo.csproj.CoreCompileInputs.cache
+C:\Quark\QuarkCotizaciones\Modelo\Modelo\obj\Debug\Modelo.dll
+C:\Quark\QuarkCotizaciones\Modelo\Modelo\obj\Debug\Modelo.pdb

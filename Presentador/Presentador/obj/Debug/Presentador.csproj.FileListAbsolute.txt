@@ -1,0 +1,9 @@
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\bin\Debug\Presentador.dll
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\bin\Debug\Presentador.pdb
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\bin\Debug\Modelo.dll
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\bin\Debug\Modelo.pdb
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\obj\Debug\Presentador.csproj.AssemblyReference.cache
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\obj\Debug\Presentador.csproj.CoreCompileInputs.cache
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\obj\Debug\Presentador.csproj.CopyComplete
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\obj\Debug\Presentador.dll
+C:\Quark\QuarkCotizaciones\Presentador\Presentador\obj\Debug\Presentador.pdb
