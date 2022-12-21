@@ -42,12 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camisa.cs" />
     <Compile Include="Cotizacion.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Precios_Stock.cs" />
     <Compile Include="Historial.cs" />
+    <Compile Include="Pantalon.cs" />
+    <Compile Include="Prenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tienda.cs" />
+    <Compile Include="Utiles.cs" />
     <Compile Include="Vendedor.cs" />
-    <Compile Include="Vendedores.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

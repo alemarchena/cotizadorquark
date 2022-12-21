@@ -1,22 +1,21 @@
-﻿using EspacioEstatico;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-//using EspacioEstatico;
 
 namespace EspacioModelo
 {
-    public class Vendedor
+    sealed public class Vendedor
     {
         string  _idvendedor;
         string  _nombre;
         string  _apellido;
-        string  _idhistorial;
+        Historial historial;
 
         /// <summary>
         /// La propiedad Idvendedor se genera automáticamente cuando es creado el vendedor
         /// </summary>
         public string Idvendedor { get => _idvendedor; }
+        public string Idhistorial { get => historial.Idhistorial; }
 
         /// <summary>
         /// Constructor de la clase vendedor
@@ -25,7 +24,7 @@ namespace EspacioModelo
         /// <param name="apellido"></param>
         public Vendedor(string nombre,string apellido){
             
-            _idvendedor = GenerarVendedor(nombre,apellido);
+            _idvendedor = Utiles.GenerarTextoAleatorio(5);
             _nombre = nombre;
             _apellido = apellido;
             GenerarHistorial();
@@ -33,15 +32,12 @@ namespace EspacioModelo
 
         private void GenerarHistorial()
         {
-            Historial historial = new Historial(_idvendedor);
-            _idhistorial = historial.Idhistorial;
+            historial = new Historial(_idvendedor);
         }
 
-        private string GenerarVendedor(string nombre,string apellido)
+        public void Cotizar()
         {
-
-            return "";
+            historial.CrearCotizacion();
         }
-
     }
 }

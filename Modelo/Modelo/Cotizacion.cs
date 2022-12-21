@@ -4,20 +4,21 @@ using System.Text;
 
 namespace EspacioModelo
 {
-    class Cotizacion
+    sealed class Cotizacion
     {
-        int _idcotizacion;
+        string _idcotizacion;
+        DateTime _fechahora;
+        List<Item> items;
+        public string Idcotizacion { get => _idcotizacion;  }
 
-        public Cotizacion()
+        public Cotizacion(string idVendedor)
         {
-            NuevaCotizacion();
+            _fechahora = new DateTime();
+            _idcotizacion = idVendedor + "#" + _fechahora;
+            items = new List<Item>();
         }
 
-        public int Idcotizacion { get => _idcotizacion;  }
-
-        private void NuevaCotizacion()
-        {
-            _idcotizacion += 1;
-        }
+      
     }
+
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EspacioModelo
 {
-    class Historial
+    sealed class Historial
     {
         string _idhistorial;
         string _idvendedor;
@@ -13,6 +13,7 @@ namespace EspacioModelo
         /// Lista de cotizaciones que tiene un historial
         /// </summary>
         List<Cotizacion> _cotizaciones;
+
         /// <summary>
         /// Constructor del historial del vendedor
         /// </summary>
@@ -24,11 +25,18 @@ namespace EspacioModelo
             NuevoHistorial();
         }
 
-        private void NuevoHistorial(){_idhistorial += 1;}
+        private void NuevoHistorial(){_idhistorial = Utiles.GenerarTextoAleatorio(5);}
+        
         /// <summary>
         /// La propiedad Idhistorial es creada automáticamente cuando se genera un nuevo historial
         /// </summary>
         public string Idhistorial { get => _idhistorial; }
+        
         internal List<Cotizacion> Cotizaciones { get => _cotizaciones; }
+
+        public void CrearCotizacion()
+        {
+            _cotizaciones.Add(new Cotizacion(_idvendedor));
+        }
     }
 }

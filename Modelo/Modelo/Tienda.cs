@@ -1,20 +1,18 @@
-﻿using EspacioEstatico;
-using System;
+﻿using System;
 
 namespace EspacioModelo
 {
-    public class Tienda
+    sealed public class Tienda
     {
         string _nombre;
         string _direccion;
         public Tienda(string nombre,string direccion)
         {
-            Vendedores.GenerarVendedor();
-            Nombre = nombre;
+            _nombre = nombre;
             _direccion = direccion;
         }
 
-        public string Nombre { get => _nombre; set => _nombre = value; }
-        public string Direccion { get => _direccion; set => _direccion = value; }
+        public string Nombre { get => _nombre; }
+        public string Direccion { get => _direccion; }
     }
 }
