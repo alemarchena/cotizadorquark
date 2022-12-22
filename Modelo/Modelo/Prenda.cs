@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static EspacioModelo.Pantalon;
 
 namespace EspacioModelo
 {
@@ -12,11 +13,8 @@ namespace EspacioModelo
     /// </summary>
     public abstract class Prenda
     {
-        public enum Tipos { Pantalon,Camisa}
-        protected Tipos _tipoPrenda;
-
-        public enum Calidades { Standard,Premium }
-        protected Calidades _calidad;
+        protected TipoPrenda _tipoPrenda;
+        protected TipoCalidad _calidad;
 
         protected int       _idPrenda;
         protected string    _descripcion;
@@ -25,8 +23,9 @@ namespace EspacioModelo
         protected float     _precio;
         protected string    _itemString;
         public string ItemString { get => _itemString; }
+        public TipoPrenda TipoPrenda { get => _tipoPrenda; }
 
-        protected Prenda(Tipos tipoPrenda, int idPrenda,string descripcion,float precioBase, Calidades calidad, int stock)
+        protected Prenda(TipoPrenda tipoPrenda, int idPrenda,string descripcion,float precioBase, TipoCalidad calidad, int stock)
         {
             _tipoPrenda     = tipoPrenda;
             _idPrenda       = idPrenda;
@@ -36,6 +35,7 @@ namespace EspacioModelo
             _stock          = stock;
         }
 
+        protected Prenda() { }
         /// <summary>
         /// Asegura que la prenda tenga un precio desde la creación de la misma
         /// </summary>

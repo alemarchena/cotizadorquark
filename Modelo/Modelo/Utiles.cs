@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace EspacioModelo
 {
-    static  class Utiles
+    static class Utiles
     {
 
         private static Random random = new Random();
@@ -20,4 +20,21 @@ namespace EspacioModelo
         }
 
     }
+  
+    
+    public struct Epreciostock
+    {
+        public float Total;
+        public float Precio;
+        public int   Stock;
+
+        
+    }
+    public enum TipoPrenda { Pantalon, Camisa }
+    public enum TipoCalidad { Standard, Premium }
+    public enum EstiloPantalon { Comun,Chupin }
+    public enum TipoManga { Corta, Larga }
+    public enum TipoCuello { Comun, Mao }
+
+    
 }

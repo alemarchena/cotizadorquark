@@ -10,15 +10,12 @@ using static EspacioModelo.Prenda;
 
 namespace EspacioModelo
 {
-    sealed class Camisa : Prenda
+    sealed public class Camisa : Prenda
     {
-        public enum TipoManga { Corta, Larga }
         TipoManga _tipoManga;
-
-        public enum TipoCuello { Comun, Mao}
         TipoCuello _tipoCuello;
-
-        public Camisa(Tipos tipoPrenda, int idPrenda, string descripcion, float precioBase, Calidades calidad, int stock,TipoManga tipoManga,TipoCuello tipoCuello) : base(tipoPrenda, idPrenda, descripcion, precioBase, calidad, stock)
+        
+        public Camisa(TipoPrenda tipoPrenda, int idPrenda, string descripcion, float precioBase, TipoCalidad calidad, int stock,TipoManga tipoManga,TipoCuello tipoCuello) : base(tipoPrenda, idPrenda, descripcion, precioBase, calidad, stock)
         {
             _tipoPrenda = tipoPrenda;
             _idPrenda = idPrenda;
@@ -34,22 +31,24 @@ namespace EspacioModelo
 
         }
 
+        public Camisa() { }
+
         protected override void CalcularPrecio()
         {
             _precio = Formula(_tipoManga,_tipoCuello, _calidad,_precioBase);
         }
-        public float CalcularPrecio(TipoManga tipoManga, TipoCuello tipoCuello, Calidades calidad, float precio)
+        public float CalcularPrecio(TipoManga tipoManga, TipoCuello tipoCuello, TipoCalidad calidad, float precio)
         {
             return Formula(tipoManga, tipoCuello, calidad, precio);
         }
 
-        private float Formula(TipoManga tipoManga, TipoCuello tipoCuello, Calidades calidad, float precio)
+        private float Formula(TipoManga tipoManga, TipoCuello tipoCuello, TipoCalidad calidad, float precio)
         {
             float precioCalculado;
 
             precioCalculado = tipoManga == TipoManga.Corta ? precio - precio * 10 / 100 : precio;
             precioCalculado += tipoCuello == TipoCuello.Mao ? precio * 3 / 100 : 0;
-            precioCalculado += calidad == Calidades.Premium ? precio * 30 / 100 : 0;
+            precioCalculado += calidad == TipoCalidad.Premium ? precio * 30 / 100 : 0;
 
             return precioCalculado;
         }

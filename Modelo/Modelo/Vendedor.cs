@@ -10,7 +10,11 @@ namespace EspacioModelo
         string  _nombre;
         string  _apellido;
         Historial historial;
-
+        public struct preciostock
+        {
+            public float _precio;
+            public int _stock;
+        }
         /// <summary>
         /// La propiedad Idvendedor se genera automáticamente cuando es creado el vendedor
         /// </summary>
@@ -35,9 +39,9 @@ namespace EspacioModelo
             historial = new Historial(_idvendedor);
         }
 
-        public void Cotizar()
+        public void GuardarCotizacion(string idvendedor, Prenda prenda, int cantidad, float preciobase, float preciocalculado, float total)
         {
-            historial.CrearCotizacion();
-        }
+            historial.CrearCotizacion(idvendedor, prenda, cantidad, preciobase, preciocalculado, total);
+        } 
     }
 }

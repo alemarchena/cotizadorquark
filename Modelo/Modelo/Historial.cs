@@ -12,7 +12,7 @@ namespace EspacioModelo
         /// <summary>
         /// Lista de cotizaciones que tiene un historial
         /// </summary>
-        List<Cotizacion> _cotizaciones;
+        List<ItemCotizacion> _cotizaciones;
 
         /// <summary>
         /// Constructor del historial del vendedor
@@ -21,7 +21,7 @@ namespace EspacioModelo
         public Historial(string idvendedor)
         {
             _idvendedor = idvendedor;
-            _cotizaciones = new List<Cotizacion>();
+            _cotizaciones = new List<ItemCotizacion>();
             NuevoHistorial();
         }
 
@@ -32,11 +32,11 @@ namespace EspacioModelo
         /// </summary>
         public string Idhistorial { get => _idhistorial; }
         
-        internal List<Cotizacion> Cotizaciones { get => _cotizaciones; }
+        internal List<ItemCotizacion> Cotizaciones { get => _cotizaciones; }
 
-        public void CrearCotizacion()
+        public void CrearCotizacion(string idvendedor, Prenda prenda, int cantidad, float preciobase, float preciocalculado, float total)
         {
-            _cotizaciones.Add(new Cotizacion(_idvendedor));
+            _cotizaciones.Add(new ItemCotizacion(idvendedor, prenda, cantidad, preciobase, preciocalculado, total));
         }
     }
 }

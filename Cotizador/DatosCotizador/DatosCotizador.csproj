@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAFEDE3E-F635-4E0A-AD80-21F5FD250054}</ProjectGuid>
+    <ProjectGuid>{5F2594BD-212A-474E-8669-1B99E9F23DD9}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Modelo</RootNamespace>
-    <AssemblyName>Modelo</AssemblyName>
+    <RootNamespace>DatosCotizador</RootNamespace>
+    <AssemblyName>DatosCotizador</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,16 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camisa.cs" />
-    <Compile Include="ItemCotizacion.cs" />
-    <Compile Include="Precios_Stock.cs" />
-    <Compile Include="Historial.cs" />
-    <Compile Include="Pantalon.cs" />
-    <Compile Include="Prenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tienda.cs" />
-    <Compile Include="Utiles.cs" />
-    <Compile Include="Vendedor.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

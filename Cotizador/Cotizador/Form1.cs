@@ -29,23 +29,27 @@ namespace Cotizador
         private void btnNuevoVendedor_Click(object sender, EventArgs e)
         {
 
-            lblId.Text          =_vista.CrearVendedor(txtNombre.Text,txtApellido.Text).ToString();
-            lblHistorial.Text   = _vista.MostrarIdHistorialVendedor();
-            txtNombre.Text = _vista.Nombre;
-            txtApellido.Text = _vista.Apellido;
+            lblId.Text              = _vista.CrearVendedor(txtNombre.Text,txtApellido.Text).ToString();
+            lblHistorial.Text       = _vista.MostrarIdHistorialVendedor();
+            txtNombre.Text          = _vista.Nombre;
+            txtApellido.Text        = _vista.Apellido;
 
-            panelVendedor.Enabled = false;
-            btnNuevoVendedor.Visible = false;
+            //Lógica visual para los objetos afectados por la acción
+            panelCotizador.Enabled      = true;
+            panelVendedor.Enabled       = false;
+            btnNuevoVendedor.Visible    = false;
         }
 
         private void btnCrearTienda_Click(object sender, EventArgs e)
         {
             _vista.CrearTienda(txtNombreTienda.Text, txtDireccionTienda.Text);
-            lblNombreTienda.Text = _vista.NombreTienda;
+            lblNombreTienda.Text    = _vista.NombreTienda;
             lblDireccionTienda.Text = _vista.DireccionTienda;
 
-            panelTienda.Visible = false;
-            panelDatosTienda.Visible= true;
+            //Lógica visual para los objetos afectados por la acción
+            btnVerStock.Enabled         = true;
+            panelTienda.Visible         = false;
+            panelDatosTienda.Visible    = true;
         }
 
         private void btnVerStock_Click(object sender, EventArgs e)
@@ -59,6 +63,29 @@ namespace Cotizador
 
         private void btnCotizar_Click(object sender, EventArgs e)
         {
+
+            int _tipoprenda = radioCamisa.Checked   ? 1 : 2;
+            int _calidad = radioStandard.Checked     ? 1 : 2;
+
+            //Caso Camisas
+            int _manga =  radioMangaCorta.Checked   ? 1 : 2;
+            int _cuello =  radioCuelloComun.Checked ? 1 : 2;
+
+            //Caso pantalones
+            int _estilo =  !chkChupin.Checked  ? 1 : 2;
+
+            txtCantidad.Text = txtCantidad.Text == "" ? "0" : txtCantidad.Text;
+            txtPrecioBase.Text = txtPrecioBase.Text == "" ? "0" : txtPrecioBase.Text;
+
+            int _stock=0;
+            float _preciocalculado = 0.0f;
+            float _total = 0.0f;
+
+            _vista.Cotizar(ref _stock, ref _preciocalculado, ref _total, lblId.Text, _tipoprenda, _calidad, int.Parse(txtCantidad.Text), float.Parse(txtPrecioBase.Text), _estilo, _cuello, _manga);
+
+            lblPrecioCalculado.Text = _preciocalculado.ToString();
+            lblStockDisponible.Text = _stock.ToString();
+            lblTotalCotizado.Text   = _total.ToString();
 
         }
     }
