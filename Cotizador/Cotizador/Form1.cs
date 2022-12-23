@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Cotizador
 {
@@ -36,6 +37,8 @@ namespace Cotizador
 
             //Lógica visual para los objetos afectados por la acción
             panelCotizador.Enabled      = true;
+            btnHistorial.Enabled        = true;
+
             panelVendedor.Enabled       = false;
             btnNuevoVendedor.Visible    = false;
         }
@@ -54,13 +57,17 @@ namespace Cotizador
 
         private void btnVerStock_Click(object sender, EventArgs e)
         {
+            RefrescarPrendas();
+        }
+
+        private void RefrescarPrendas()
+        {
             listaStock.Clear();
             foreach (string item in _vista.MostrarPrendas())
             {
                 listaStock.Items.Add(item);
             }
         }
-
         private void btnCotizar_Click(object sender, EventArgs e)
         {
 
@@ -81,12 +88,57 @@ namespace Cotizador
             float _preciocalculado = 0.0f;
             float _total = 0.0f;
 
-            _vista.Cotizar(ref _stock, ref _preciocalculado, ref _total, lblId.Text, _tipoprenda, _calidad, int.Parse(txtCantidad.Text), float.Parse(txtPrecioBase.Text), _estilo, _cuello, _manga);
+            int _pudocotizar = _vista.Cotizar(ref _stock, ref _preciocalculado, ref _total, lblId.Text, _tipoprenda, _calidad, int.Parse(txtCantidad.Text), float.Parse(txtPrecioBase.Text), _estilo, _cuello, _manga);
 
-            lblPrecioCalculado.Text = _preciocalculado.ToString();
-            lblStockDisponible.Text = _stock.ToString();
-            lblTotalCotizado.Text   = _total.ToString();
+            if(_pudocotizar> 0)
+            {
+                lblPrecioCalculado.Text = _preciocalculado.ToString();
+                lblStockDisponible.Text = _stock.ToString();
+                lblTotalCotizado.Text   = _total.ToString();
+                RefrescarPrendas();
+            }
+            else
+            {
+                if (_pudocotizar != -1)
+                    MessageBox.Show("La cantidad a cotizar es mayor al stock existente");
+            }
 
+        }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            Form2 formularioHistorial = new Form2();
+
+            formularioHistorial.CargarLista(_vista.MostrarHistorial());
+            formularioHistorial.ShowDialog();
+
+            
+        }
+
+        private void txtPrecioBase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+               (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+      
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros enteros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

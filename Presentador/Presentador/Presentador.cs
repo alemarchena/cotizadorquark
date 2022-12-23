@@ -31,15 +31,32 @@ namespace EspacioPresentador
         {
             List<string> lista = new List<string>();
 
-            foreach(Prenda prenda in Precios_Stock.ListaPrendas)
+            foreach (Pantalon pantalon in Precios_Stock.ListaPantalones)
             {
-                lista.Add(prenda.ItemString);
+                lista.Add(pantalon.ItemString + " Stock " + pantalon.Stock);
+            }
+
+            foreach(Camisa camisa in Precios_Stock.ListaCamisas)
+            {
+                lista.Add(camisa.ItemString + " Stock " + camisa.Stock);
+            }
+
+            return lista;
+        }
+        public List<string> MostrarHistorial()
+        {
+            List<string> lista = new List<string>();
+
+            foreach (ItemCotizacion item in _vendedor.HistorialVendedor.Cotizaciones)
+            {
+                lista.Add(item.ItemString);
             }
 
             return lista;
         }
 
-        
+        #region LOGICA DE NEGOCIO DEL PRESENTADOR
+
         /// <summary>
         /// Cotiza un pantalon. 
         /// Calidad : 1=Standard, 2=Premium. 
@@ -48,26 +65,40 @@ namespace EspacioPresentador
         /// <param name="idvendedor"></param>
         /// <param name="calidad"></param>
         /// <param name="cantidad"></param>
-        /// <param name="precio"></param>
+        /// <param name="preciobase"></param>
         /// <param name="estilo"></param>
-        public void Cotizar(ref int stockdisponible, ref float preciocalculado, ref float total, string idvendedor, int cantidad, float precio, int calidad, int estilo )
+        public int Cotizar(ref int stockdisponible, ref float preciocalculado, ref float total, string idvendedor, int cantidad, float preciobase, int calidad, int estilo )
         {
 
-            Epreciostock resultado = new Epreciostock();
-            
-            Pantalon p = new Pantalon();
-            if(estilo == 1 && calidad == 1)
-                resultado.Precio = p.CalcularPrecio(EstiloPantalon.Comun, TipoCalidad.Standard, precio);
-            if(estilo == 1 && calidad == 2)
-                resultado.Precio = p.CalcularPrecio(EstiloPantalon.Comun, TipoCalidad.Premium, precio);
+            EstiloPantalon epantalon    = EstiloPantalon.Comun;
+            TipoCalidad tcalidad        = TipoCalidad.Standard;
 
-            if (estilo == 2 && calidad == 1)
-                resultado.Precio = p.CalcularPrecio(EstiloPantalon.Chupin, TipoCalidad.Standard, precio);
-            if (estilo == 2 && calidad == 2)
-                resultado.Precio = p.CalcularPrecio(EstiloPantalon.Chupin, TipoCalidad.Premium, precio);
+            Pantalon pantalon = new Pantalon();
+            pantalon.DiscriminarPrenda(estilo, calidad,ref epantalon,ref tcalidad);
 
-            AsignaReferencias(ref stockdisponible, ref preciocalculado, ref total, resultado.Precio, cantidad);
+            //Calcula el precio segun la formula y el total del item
+            preciocalculado = pantalon.CalcularPrecio(epantalon, tcalidad, preciobase);
+            total = preciocalculado * cantidad;
 
+            //Busca el stock y valida si alcanza
+            int _pudocotizar = 0;
+            _pudocotizar = pantalon.BuscaryActualizarStock(ref stockdisponible, ref pantalon, tcalidad, epantalon, cantidad);
+
+            //Guarda la cotizacion en el historial
+            if (_pudocotizar == 1)
+            {
+                ECPT _ecpt = new ECPT();
+
+                _ecpt.Cantidad = cantidad;
+                _ecpt.PrecioBase = preciobase;
+                _ecpt.PrecioCalculado = preciocalculado;
+                _ecpt.Total = preciocalculado * cantidad;
+
+                _vendedor.GuardarCotizacion(idvendedor, pantalon, _ecpt);
+            }
+
+
+            return _pudocotizar;
         }
 
         /// <summary>
@@ -78,43 +109,42 @@ namespace EspacioPresentador
         /// </summary>
         /// <param name="idvendedor"></param>
         /// <param name="cantidad"></param>
-        /// <param name="precio"></param>
+        /// <param name="preciobase"></param>
         /// <param name="calidad"></param>
-        /// <param name="tipoManga"></param>
+        /// <param name="tipomanga"></param>
         /// <param name="tipocuello"></param>
-        public void Cotizar(ref int stockdisponible, ref float preciocalculado, ref float total, string idvendedor, int cantidad, float precio, int calidad, int tipoManga,int tipocuello )
+        public int Cotizar(ref int stockdisponible, ref float preciocalculado, ref float total, string idvendedor, int cantidad, float preciobase, int calidad, int tipomanga,int tipocuello )
         {
 
-            Epreciostock resultado = new Epreciostock();
-            Camisa c = new Camisa();
+            TipoManga   tmanga = TipoManga.Corta;
+            TipoCuello  tcuello = TipoCuello.Comun;
+            TipoCalidad tcalidad =TipoCalidad.Standard;
 
-            if(tipoManga == 1 && tipocuello == 1 && calidad == 1)
-            resultado.Precio = c.CalcularPrecio(TipoManga.Corta,TipoCuello.Comun,TipoCalidad.Standard,precio);
-            if(tipoManga == 1 && tipocuello == 1 && calidad == 2)
-            resultado.Precio = c.CalcularPrecio(TipoManga.Corta, TipoCuello.Comun, TipoCalidad.Premium, precio);
-            if (tipoManga == 1 && tipocuello == 2 && calidad == 1)
-            resultado.Precio = c.CalcularPrecio(TipoManga.Corta, TipoCuello.Mao, TipoCalidad.Standard, precio);
-            if (tipoManga == 1 && tipocuello == 2 && calidad == 2)
-            resultado.Precio = c.CalcularPrecio(TipoManga.Corta, TipoCuello.Mao, TipoCalidad.Premium, precio);
+            Camisa camisa = new Camisa();
+            camisa.DiscriminarPrenda(calidad,tipomanga,tipocuello,ref tmanga, ref tcuello, ref tcalidad);
 
+            preciocalculado = camisa.CalcularPrecio(tmanga, tcuello, tcalidad, preciobase);
+            total = preciocalculado * cantidad;
 
-            if (tipoManga == 2 && tipocuello == 1 && calidad == 1)
-            resultado.Precio = c.CalcularPrecio(TipoManga.Larga, TipoCuello.Comun, TipoCalidad.Standard, precio);
-            if (tipoManga == 2 && tipocuello == 1 && calidad == 2)
-            resultado.Precio = c.CalcularPrecio(TipoManga.Larga, TipoCuello.Comun, TipoCalidad.Premium, precio);
-            if (tipoManga == 2 && tipocuello == 2 && calidad == 1)
-            resultado.Precio = c.CalcularPrecio(TipoManga.Larga, TipoCuello.Mao, TipoCalidad.Standard, precio);
-            if (tipoManga == 2 && tipocuello == 2 && calidad == 2)
-            resultado.Precio = c.CalcularPrecio(TipoManga.Larga, TipoCuello.Mao, TipoCalidad.Premium, precio);
+            int _pudocotizar = 0;
+            _pudocotizar = camisa.BuscaryActualizarStock(ref stockdisponible, ref camisa, tcalidad, tmanga, tcuello, cantidad);
+            
+            if(_pudocotizar == 1)
+            {
+                //Se arma la estructura con los datos para guardar el item en el historial
+                ECPT _ecpt = new ECPT();
 
-            AsignaReferencias(ref stockdisponible, ref preciocalculado, ref total, resultado.Precio, cantidad);
-
+                _ecpt.Cantidad = cantidad;
+                _ecpt.PrecioCalculado = preciocalculado;
+                _ecpt.PrecioBase = preciobase;
+                _ecpt.Total = total;
+                
+                _vendedor.GuardarCotizacion(idvendedor, camisa, _ecpt);
+            }
+           
+            return _pudocotizar;
         }
 
-        private void AsignaReferencias(ref int stockdisponible, ref float preciocalculado, ref float total,float precio,int cantidad) {
-            preciocalculado = precio;
-            total = precio * cantidad;
-            stockdisponible = 0;
-        }
+        #endregion
     }
 }

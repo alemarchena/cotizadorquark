@@ -4,15 +4,18 @@ using System.Text;
 
 namespace EspacioModelo
 {
-    sealed class Historial
+    sealed public class Historial
     {
-        string _idhistorial;
-        string _idvendedor;
+        private string _idhistorial;
+        private string _idvendedor;
 
         /// <summary>
         /// Lista de cotizaciones que tiene un historial
         /// </summary>
-        List<ItemCotizacion> _cotizaciones;
+        private List<ItemCotizacion> _cotizaciones;
+
+        public string Idhistorial { get => _idhistorial; }
+        public List<ItemCotizacion> Cotizaciones { get => _cotizaciones; }
 
         /// <summary>
         /// Constructor del historial del vendedor
@@ -30,13 +33,11 @@ namespace EspacioModelo
         /// <summary>
         /// La propiedad Idhistorial es creada automáticamente cuando se genera un nuevo historial
         /// </summary>
-        public string Idhistorial { get => _idhistorial; }
         
-        internal List<ItemCotizacion> Cotizaciones { get => _cotizaciones; }
 
-        public void CrearCotizacion(string idvendedor, Prenda prenda, int cantidad, float preciobase, float preciocalculado, float total)
+        public void CrearCotizacion(string idvendedor, Prenda prenda, ECPT ecpt)
         {
-            _cotizaciones.Add(new ItemCotizacion(idvendedor, prenda, cantidad, preciobase, preciocalculado, total));
+            Cotizaciones.Add(new ItemCotizacion(idvendedor, prenda, ecpt));
         }
     }
 }

@@ -3,33 +3,44 @@
 
 namespace EspacioModelo
 {
-    sealed class ItemCotizacion
+    sealed public class ItemCotizacion
     {
         string      _idvendedor;
         string      _idcotizacion;
-        DateTime    _fechahora;
+        string    _fechahora;
         Prenda      _prenda;
         int         _cantidad;
         float       _preciobase;
         float       _preciocalculado;
         float       _total;
+        string      _itemString;
 
         public string Idcotizacion { get => _idcotizacion;  }
+        public string ItemString { get => _itemString; set => _itemString = value; }
 
-        public ItemCotizacion(string idvendedor,Prenda prenda,int cantidad,float preciobase,float preciocalculado,float total)
+        public ItemCotizacion(string idvendedor,Prenda prenda, ECPT ecpt)
         {
-            _fechahora = new DateTime();
-            _idvendedor = idvendedor;
-            _idcotizacion = idvendedor + "#" + _fechahora;
-            _cantidad = cantidad;
-            _prenda = prenda;
-            _preciobase = preciobase;
-            _total = total;
-            _preciocalculado = preciocalculado;
+            _prenda         = prenda;
+            _fechahora      = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToString("hh:mm:ss");
+            _idvendedor     = idvendedor;
+            _idcotizacion   = idvendedor + "#" + _fechahora;
 
+            _cantidad       = ecpt.Cantidad;
+            _preciobase     = ecpt.PrecioBase;
+            _total          = ecpt.Total;
+            _preciocalculado= ecpt.PrecioCalculado;
+
+            GenerarItemString(this);
         }
 
-       
+        private void GenerarItemString(ItemCotizacion item)
+        {
+            item.ItemString = item._fechahora.ToString() + " - " +
+            item._prenda.ItemString + 
+            " Cantidad:" + item._cantidad + 
+            " $" + item._preciocalculado + 
+            " Total $" + item._total + " ";
+        }
     }
 
 }

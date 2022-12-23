@@ -14,3 +14,4 @@ C:\Quark\QuarkCotizaciones\Cotizador\Cotizador\bin\Debug\Modelo.dll
 C:\Quark\QuarkCotizaciones\Cotizador\Cotizador\bin\Debug\Presentador.pdb
 C:\Quark\QuarkCotizaciones\Cotizador\Cotizador\bin\Debug\Modelo.pdb
 C:\Quark\QuarkCotizaciones\Cotizador\Cotizador\obj\Debug\Cotizador.Form1.resources
+C:\Quark\QuarkCotizaciones\Cotizador\Cotizador\obj\Debug\Cotizador.Form2.resources

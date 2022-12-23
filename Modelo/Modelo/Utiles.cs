@@ -21,12 +21,15 @@ namespace EspacioModelo
 
     }
   
-    
-    public struct Epreciostock
+    /// <summary>
+    /// EPT : Estructura con cantidad,precios y total
+    /// </summary>
+    public struct ECPT
     {
+        public int   Cantidad;
+        public float PrecioBase;
+        public float PrecioCalculado;
         public float Total;
-        public float Precio;
-        public int   Stock;
 
         
     }

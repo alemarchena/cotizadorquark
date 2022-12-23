@@ -11,7 +11,7 @@ namespace EspacioModelo
     sealed public class Pantalon : Prenda
     {
         EstiloPantalon _estilo;
-        internal EstiloPantalon Estilo { get => Estilo; set => Estilo = value; }
+        public EstiloPantalon Estilo { get => _estilo; }
 
         public Pantalon(TipoPrenda tipoPrenda, int idPrenda, string descripcion, float precioBase, TipoCalidad calidad, int stock, EstiloPantalon estilo) : base(tipoPrenda, idPrenda, descripcion, precioBase, calidad, stock)
         {
@@ -24,7 +24,7 @@ namespace EspacioModelo
             _estilo     = estilo;
 
             CalcularPrecio();
-            GenerarItemString();
+            GenerarItemString(this);
         }
 
         public Pantalon() { }
@@ -39,6 +39,46 @@ namespace EspacioModelo
             return Formula(estilo,calidad,precio);
         }
 
+        public void DiscriminarPrenda(int estilo,int calidad,ref EstiloPantalon epantalon,ref TipoCalidad tcalidad)
+        {
+            if (estilo == 1 && calidad == 1)
+            { epantalon = EstiloPantalon.Comun; tcalidad = TipoCalidad.Standard; }
+
+            if (estilo == 1 && calidad == 2)
+            { epantalon = EstiloPantalon.Comun; tcalidad = TipoCalidad.Premium; }
+
+            if (estilo == 2 && calidad == 1)
+            { epantalon = EstiloPantalon.Chupin; tcalidad = TipoCalidad.Standard; }
+
+            if (estilo == 2 && calidad == 2)
+            { epantalon = EstiloPantalon.Chupin; tcalidad = TipoCalidad.Premium; }
+        }
+
+        public int BuscaryActualizarStock(ref int stockdisponible, ref Pantalon prenda, TipoCalidad tcalidad, EstiloPantalon testilo,int cantidad)
+        {
+            int _pudocotizar = 0;
+
+            for (int a = 0; a < Precios_Stock.ListaPantalones.Count; a++)
+            {
+                if (tcalidad == Precios_Stock.ListaPantalones[a].Calidad &&
+                    testilo== Precios_Stock.ListaPantalones[a].Estilo) 
+                {
+                    if (Precios_Stock.ListaPantalones[a].Stock >= cantidad)
+                    {
+                        prenda = Precios_Stock.ListaPantalones[a];
+                        stockdisponible = Precios_Stock.ListaPantalones[a].Stock;
+
+                        Precios_Stock.ListaPantalones[a].RestarStock(cantidad);
+                        GenerarItemString(Precios_Stock.ListaPantalones[a]);
+
+                        _pudocotizar = 1;
+                    }
+                }
+            }
+            return _pudocotizar;
+        }
+
+       
         private float Formula(EstiloPantalon estilo, TipoCalidad calidad, float precio)
         {
             float precioCalculado;
@@ -48,10 +88,14 @@ namespace EspacioModelo
 
             return precioCalculado;
         }
-        
-        protected override void GenerarItemString()
+
+        private void GenerarItemString(Pantalon prenda)
         {
-            _itemString = "Cód " + _idPrenda.ToString() + " " + _descripcion + " " + _estilo.ToString() + " " + _calidad.ToString() + " $" + _precio.ToString() + " Stock: " + _stock.ToString();
+            prenda.ItemString = "Cód " + prenda.IdPrenda.ToString() + " " +
+            prenda.Descripcion + " " +
+            prenda.Estilo.ToString() + " " +
+            prenda.Calidad.ToString() + " $" +
+            prenda.PrecioBase.ToString();
         }
 
     }

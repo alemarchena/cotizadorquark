@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,26 +14,31 @@ namespace EspacioModelo
     /// </summary>
     public abstract class Prenda
     {
-        protected TipoPrenda _tipoPrenda;
-        protected TipoCalidad _calidad;
+        protected TipoPrenda    _tipoPrenda;
+        protected TipoCalidad   _calidad;
 
         protected int       _idPrenda;
         protected string    _descripcion;
         protected float     _precioBase;
         protected int       _stock;
         protected float     _precio;
-        protected string    _itemString;
-        public string ItemString { get => _itemString; }
+        private string      _itemString;
         public TipoPrenda TipoPrenda { get => _tipoPrenda; }
+        public TipoCalidad Calidad { get => _calidad; }
+        public int IdPrenda { get => _idPrenda; }
+        public string Descripcion { get => _descripcion; }
+        public float PrecioBase { get => _precioBase; }
+        public int Stock { get => _stock; }
+        public string ItemString { get => _itemString; set => _itemString = value; }
 
         protected Prenda(TipoPrenda tipoPrenda, int idPrenda,string descripcion,float precioBase, TipoCalidad calidad, int stock)
         {
             _tipoPrenda     = tipoPrenda;
-            _idPrenda       = idPrenda;
+            _idPrenda = idPrenda;
             _descripcion    = descripcion;
-            _precioBase     = precioBase;
-            _calidad        = calidad;
-            _stock          = stock;
+            _precioBase = precioBase;
+            _calidad = calidad;
+            _stock = stock;
         }
 
         protected Prenda() { }
@@ -43,6 +49,13 @@ namespace EspacioModelo
         /// <summary>
         /// Asegura una descripción expuesta en formato String
         /// </summary>
-        protected abstract void GenerarItemString();
+        protected void RestarStock(int cantidad)
+        {
+            _stock -= cantidad;
+        }
+        protected void SumarStock(int cantidad)
+        {
+            _stock += cantidad;
+        }
     }
 }

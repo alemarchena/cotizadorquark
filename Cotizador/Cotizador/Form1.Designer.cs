@@ -38,7 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.btnNuevoVendedor = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.panelTienda = new System.Windows.Forms.Panel();
             this.btnCrearTienda = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,6 +57,7 @@
             this.lblStockDisponible = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblPrecioCalculado = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
@@ -71,16 +71,16 @@
             this.radioPremium = new System.Windows.Forms.RadioButton();
             this.radioStandard = new System.Windows.Forms.RadioButton();
             this.panelPrenda = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.radioCuelloMao = new System.Windows.Forms.RadioButton();
+            this.radioCuelloComun = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioMangaLarga = new System.Windows.Forms.RadioButton();
             this.radioMangaCorta = new System.Windows.Forms.RadioButton();
             this.chkChupin = new System.Windows.Forms.CheckBox();
             this.radioPantalon = new System.Windows.Forms.RadioButton();
             this.radioCamisa = new System.Windows.Forms.RadioButton();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.radioCuelloMao = new System.Windows.Forms.RadioButton();
-            this.radioCuelloComun = new System.Windows.Forms.RadioButton();
-            this.lblPrecioCalculado = new System.Windows.Forms.Label();
+            this.btnHistorial = new System.Windows.Forms.Button();
             this.panelVendedor.SuspendLayout();
             this.panelTienda.SuspendLayout();
             this.panelDatosTienda.SuspendLayout();
@@ -88,8 +88,8 @@
             this.panel1.SuspendLayout();
             this.panelCalidad.SuspendLayout();
             this.panelPrenda.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelVendedor
@@ -104,16 +104,16 @@
             this.panelVendedor.Controls.Add(this.label1);
             this.panelVendedor.Controls.Add(this.lblId);
             this.panelVendedor.Controls.Add(this.btnNuevoVendedor);
-            this.panelVendedor.Location = new System.Drawing.Point(425, 12);
+            this.panelVendedor.Location = new System.Drawing.Point(12, 79);
             this.panelVendedor.Name = "panelVendedor";
-            this.panelVendedor.Size = new System.Drawing.Size(366, 105);
+            this.panelVendedor.Size = new System.Drawing.Size(395, 105);
             this.panelVendedor.TabIndex = 9;
             this.panelVendedor.Tag = "Panel Vendedor";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 43);
+            this.label4.Location = new System.Drawing.Point(10, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 17;
@@ -122,7 +122,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 69);
+            this.label3.Location = new System.Drawing.Point(13, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 16;
@@ -130,14 +130,14 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(71, 66);
+            this.txtApellido.Location = new System.Drawing.Point(73, 66);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(153, 20);
             this.txtApellido.TabIndex = 15;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(71, 40);
+            this.txtNombre.Location = new System.Drawing.Point(73, 41);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(153, 20);
             this.txtNombre.TabIndex = 14;
@@ -184,23 +184,13 @@
             // 
             // btnNuevoVendedor
             // 
-            this.btnNuevoVendedor.Location = new System.Drawing.Point(255, 43);
+            this.btnNuevoVendedor.Location = new System.Drawing.Point(284, 10);
             this.btnNuevoVendedor.Name = "btnNuevoVendedor";
-            this.btnNuevoVendedor.Size = new System.Drawing.Size(82, 39);
+            this.btnNuevoVendedor.Size = new System.Drawing.Size(95, 25);
             this.btnNuevoVendedor.TabIndex = 9;
             this.btnNuevoVendedor.Text = "Crear Vendedor";
             this.btnNuevoVendedor.UseVisualStyleBackColor = true;
             this.btnNuevoVendedor.Click += new System.EventHandler(this.btnNuevoVendedor_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(164, 21);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 20);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "COTIZADOR";
             // 
             // panelTienda
             // 
@@ -209,7 +199,7 @@
             this.panelTienda.Controls.Add(this.label7);
             this.panelTienda.Controls.Add(this.txtDireccionTienda);
             this.panelTienda.Controls.Add(this.txtNombreTienda);
-            this.panelTienda.Location = new System.Drawing.Point(24, 57);
+            this.panelTienda.Location = new System.Drawing.Point(12, 12);
             this.panelTienda.Name = "panelTienda";
             this.panelTienda.Size = new System.Drawing.Size(395, 60);
             this.panelTienda.TabIndex = 11;
@@ -218,7 +208,7 @@
             // 
             this.btnCrearTienda.Location = new System.Drawing.Point(284, 6);
             this.btnCrearTienda.Name = "btnCrearTienda";
-            this.btnCrearTienda.Size = new System.Drawing.Size(82, 23);
+            this.btnCrearTienda.Size = new System.Drawing.Size(95, 23);
             this.btnCrearTienda.TabIndex = 22;
             this.btnCrearTienda.Text = "Crear Tienda";
             this.btnCrearTienda.UseVisualStyleBackColor = true;
@@ -246,7 +236,7 @@
             // 
             this.txtDireccionTienda.Location = new System.Drawing.Point(129, 34);
             this.txtDireccionTienda.Name = "txtDireccionTienda";
-            this.txtDireccionTienda.Size = new System.Drawing.Size(237, 20);
+            this.txtDireccionTienda.Size = new System.Drawing.Size(250, 20);
             this.txtDireccionTienda.TabIndex = 19;
             // 
             // txtNombreTienda
@@ -261,7 +251,7 @@
             this.panelDatosTienda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panelDatosTienda.Controls.Add(this.lblDireccionTienda);
             this.panelDatosTienda.Controls.Add(this.lblNombreTienda);
-            this.panelDatosTienda.Location = new System.Drawing.Point(24, 56);
+            this.panelDatosTienda.Location = new System.Drawing.Point(12, 11);
             this.panelDatosTienda.Name = "panelDatosTienda";
             this.panelDatosTienda.Size = new System.Drawing.Size(395, 61);
             this.panelDatosTienda.TabIndex = 12;
@@ -291,10 +281,10 @@
             this.columnHeader1});
             this.listaStock.FullRowSelect = true;
             this.listaStock.HideSelection = false;
-            this.listaStock.Location = new System.Drawing.Point(24, 161);
+            this.listaStock.Location = new System.Drawing.Point(12, 221);
             this.listaStock.MultiSelect = false;
             this.listaStock.Name = "listaStock";
-            this.listaStock.Size = new System.Drawing.Size(395, 367);
+            this.listaStock.Size = new System.Drawing.Size(395, 187);
             this.listaStock.TabIndex = 13;
             this.listaStock.UseCompatibleStateImageBehavior = false;
             this.listaStock.View = System.Windows.Forms.View.List;
@@ -307,7 +297,7 @@
             // btnVerStock
             // 
             this.btnVerStock.Enabled = false;
-            this.btnVerStock.Location = new System.Drawing.Point(24, 132);
+            this.btnVerStock.Location = new System.Drawing.Point(12, 192);
             this.btnVerStock.Name = "btnVerStock";
             this.btnVerStock.Size = new System.Drawing.Size(75, 23);
             this.btnVerStock.TabIndex = 15;
@@ -327,7 +317,7 @@
             this.panelCotizador.Controls.Add(this.panelCalidad);
             this.panelCotizador.Controls.Add(this.panelPrenda);
             this.panelCotizador.Enabled = false;
-            this.panelCotizador.Location = new System.Drawing.Point(437, 132);
+            this.panelCotizador.Location = new System.Drawing.Point(450, 12);
             this.panelCotizador.Name = "panelCotizador";
             this.panelCotizador.Size = new System.Drawing.Size(351, 396);
             this.panelCotizador.TabIndex = 16;
@@ -372,7 +362,7 @@
             // lblStockDisponible
             // 
             this.lblStockDisponible.AutoSize = true;
-            this.lblStockDisponible.Location = new System.Drawing.Point(174, 216);
+            this.lblStockDisponible.Location = new System.Drawing.Point(199, 216);
             this.lblStockDisponible.Name = "lblStockDisponible";
             this.lblStockDisponible.Size = new System.Drawing.Size(13, 13);
             this.lblStockDisponible.TabIndex = 21;
@@ -383,9 +373,9 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(16, 216);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(151, 13);
+            this.label15.Size = new System.Drawing.Size(177, 13);
             this.label15.TabIndex = 20;
-            this.label15.Text = "Unidades de stock disponibles";
+            this.label15.Text = "Unidades de stock antes de cotizar ";
             // 
             // panel1
             // 
@@ -403,6 +393,14 @@
             this.panel1.Size = new System.Drawing.Size(322, 84);
             this.panel1.TabIndex = 19;
             this.panel1.Tag = "Calidad";
+            // 
+            // lblPrecioCalculado
+            // 
+            this.lblPrecioCalculado.AutoSize = true;
+            this.lblPrecioCalculado.Location = new System.Drawing.Point(16, 42);
+            this.lblPrecioCalculado.Name = "lblPrecioCalculado";
+            this.lblPrecioCalculado.Size = new System.Drawing.Size(0, 13);
+            this.lblPrecioCalculado.TabIndex = 24;
             // 
             // label14
             // 
@@ -428,6 +426,7 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(68, 20);
             this.txtCantidad.TabIndex = 21;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // txtPrecioBase
             // 
@@ -435,6 +434,7 @@
             this.txtPrecioBase.Name = "txtPrecioBase";
             this.txtPrecioBase.Size = new System.Drawing.Size(68, 20);
             this.txtPrecioBase.TabIndex = 20;
+            this.txtPrecioBase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioBase_KeyPress);
             // 
             // label11
             // 
@@ -530,6 +530,37 @@
             this.panelPrenda.TabIndex = 0;
             this.panelPrenda.Tag = "Tipo de Prenda";
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.radioCuelloMao);
+            this.panel3.Controls.Add(this.radioCuelloComun);
+            this.panel3.Location = new System.Drawing.Point(113, 54);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 41);
+            this.panel3.TabIndex = 6;
+            // 
+            // radioCuelloMao
+            // 
+            this.radioCuelloMao.AutoSize = true;
+            this.radioCuelloMao.Location = new System.Drawing.Point(106, 13);
+            this.radioCuelloMao.Name = "radioCuelloMao";
+            this.radioCuelloMao.Size = new System.Drawing.Size(78, 17);
+            this.radioCuelloMao.TabIndex = 2;
+            this.radioCuelloMao.Text = "Cuello Mao";
+            this.radioCuelloMao.UseVisualStyleBackColor = true;
+            // 
+            // radioCuelloComun
+            // 
+            this.radioCuelloComun.AutoSize = true;
+            this.radioCuelloComun.Checked = true;
+            this.radioCuelloComun.Location = new System.Drawing.Point(14, 13);
+            this.radioCuelloComun.Name = "radioCuelloComun";
+            this.radioCuelloComun.Size = new System.Drawing.Size(90, 17);
+            this.radioCuelloComun.TabIndex = 1;
+            this.radioCuelloComun.TabStop = true;
+            this.radioCuelloComun.Text = "Cuello Común";
+            this.radioCuelloComun.UseVisualStyleBackColor = true;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.radioMangaLarga);
@@ -593,55 +624,27 @@
             this.radioCamisa.Text = "Camisa";
             this.radioCamisa.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // btnHistorial
             // 
-            this.panel3.Controls.Add(this.radioCuelloMao);
-            this.panel3.Controls.Add(this.radioCuelloComun);
-            this.panel3.Location = new System.Drawing.Point(113, 54);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 41);
-            this.panel3.TabIndex = 6;
-            // 
-            // radioCuelloMao
-            // 
-            this.radioCuelloMao.AutoSize = true;
-            this.radioCuelloMao.Location = new System.Drawing.Point(106, 13);
-            this.radioCuelloMao.Name = "radioCuelloMao";
-            this.radioCuelloMao.Size = new System.Drawing.Size(78, 17);
-            this.radioCuelloMao.TabIndex = 2;
-            this.radioCuelloMao.Text = "Cuello Mao";
-            this.radioCuelloMao.UseVisualStyleBackColor = true;
-            // 
-            // radioCuelloComun
-            // 
-            this.radioCuelloComun.AutoSize = true;
-            this.radioCuelloComun.Checked = true;
-            this.radioCuelloComun.Location = new System.Drawing.Point(14, 13);
-            this.radioCuelloComun.Name = "radioCuelloComun";
-            this.radioCuelloComun.Size = new System.Drawing.Size(90, 17);
-            this.radioCuelloComun.TabIndex = 1;
-            this.radioCuelloComun.TabStop = true;
-            this.radioCuelloComun.Text = "Cuello Común";
-            this.radioCuelloComun.UseVisualStyleBackColor = true;
-            // 
-            // lblPrecioCalculado
-            // 
-            this.lblPrecioCalculado.AutoSize = true;
-            this.lblPrecioCalculado.Location = new System.Drawing.Point(16, 42);
-            this.lblPrecioCalculado.Name = "lblPrecioCalculado";
-            this.lblPrecioCalculado.Size = new System.Drawing.Size(0, 13);
-            this.lblPrecioCalculado.TabIndex = 24;
+            this.btnHistorial.Enabled = false;
+            this.btnHistorial.Location = new System.Drawing.Point(326, 193);
+            this.btnHistorial.Name = "btnHistorial";
+            this.btnHistorial.Size = new System.Drawing.Size(81, 23);
+            this.btnHistorial.TabIndex = 19;
+            this.btnHistorial.Text = "Ver Historial";
+            this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 540);
+            this.ClientSize = new System.Drawing.Size(809, 417);
+            this.Controls.Add(this.btnHistorial);
             this.Controls.Add(this.panelCotizador);
             this.Controls.Add(this.btnVerStock);
             this.Controls.Add(this.listaStock);
             this.Controls.Add(this.panelTienda);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.panelVendedor);
             this.Controls.Add(this.panelDatosTienda);
             this.MaximizeBox = false;
@@ -662,12 +665,11 @@
             this.panelCalidad.PerformLayout();
             this.panelPrenda.ResumeLayout(false);
             this.panelPrenda.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -683,7 +685,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Button btnNuevoVendedor;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panelTienda;
         private System.Windows.Forms.Button btnCrearTienda;
         private System.Windows.Forms.Label label6;
@@ -726,6 +727,7 @@
         private System.Windows.Forms.RadioButton radioCuelloMao;
         private System.Windows.Forms.RadioButton radioCuelloComun;
         private System.Windows.Forms.Label lblPrecioCalculado;
+        private System.Windows.Forms.Button btnHistorial;
     }
 }
 
