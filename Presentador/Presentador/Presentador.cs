@@ -61,6 +61,7 @@ namespace EspacioPresentador
         /// Cotiza un pantalon. 
         /// Calidad : 1=Standard, 2=Premium. 
         /// Estilos : 1=Común,2=Chupín. 
+        /// (Devuelve 0 si no pudo cotizar y 1 si cotizó con éxito).
         /// </summary>
         /// <param name="idvendedor"></param>
         /// <param name="calidad"></param>
@@ -106,6 +107,7 @@ namespace EspacioPresentador
         /// Tipos de Manga : 1=Corta, 2=Larga. 
         /// Tipos de Cuello: 1=Común, 2=Mao.
         /// Calidad : 1=Standard, 2=Premium. 
+        /// (Devuelve 0 si no pudo cotizar y 1 si cotizó con éxito).
         /// </summary>
         /// <param name="idvendedor"></param>
         /// <param name="cantidad"></param>

@@ -72,14 +72,14 @@ namespace Cotizador
         {
 
             int _tipoprenda = radioCamisa.Checked   ? 1 : 2;
-            int _calidad = radioStandard.Checked     ? 1 : 2;
+            int _calidad = radioStandard.Checked    ? 1 : 2;
 
             //Caso Camisas
             int _manga =  radioMangaCorta.Checked   ? 1 : 2;
             int _cuello =  radioCuelloComun.Checked ? 1 : 2;
 
             //Caso pantalones
-            int _estilo =  !chkChupin.Checked  ? 1 : 2;
+            int _estilo =  !chkChupin.Checked       ? 1 : 2;
 
             txtCantidad.Text = txtCantidad.Text == "" ? "0" : txtCantidad.Text;
             txtPrecioBase.Text = txtPrecioBase.Text == "" ? "0" : txtPrecioBase.Text;
@@ -100,7 +100,9 @@ namespace Cotizador
             else
             {
                 if (_pudocotizar != -1)
-                    MessageBox.Show("La cantidad a cotizar es mayor al stock existente");
+                    MessageBox.Show("La cantidad a cotizar es mayor al stock existente.");
+                else
+                    MessageBox.Show("Uno o mas valores enviados a la vista son incorrectos.");
             }
 
         }

@@ -14,6 +14,9 @@ namespace Cotizaciones
     /// </summary>
     sealed class Vista : IVista
     {
+        /// <summary>
+        /// Variable que implementa la interfaz IVista
+        /// </summary>
         IVista _iv;
         Presentador _presentador;
 
@@ -23,12 +26,13 @@ namespace Cotizaciones
             _iv.CrearPresentador();
         }
 
-        /// <summary>
-        /// Variable que implementa la interfaz IVista
-        /// </summary>
-
+        public void CrearPresentador()
+        {
+            _presentador = new Presentador();
+        }
 
         #region Variables de la vista
+
         string _nombre;
         string _apellido;
         public string Nombre { get => _nombre; }
@@ -69,6 +73,7 @@ namespace Cotizaciones
         /// Estilos : 1=Común,2=Chupín.
         /// Tipos de Manga : 1=Corta, 2=Larga. 
         /// Tipos de Cuello: 1=Común, 2=Mao.
+        /// (Devuelve: -1 si hay errores en los valores de los campos enviados. Devuelve: 0 si no pudo cotizar. Devuelve: 1 si cotizó con éxito).
         /// </summary>
         /// <param name="idvendedor"></param>
         /// <param name="tipoPrenda"></param>
@@ -158,21 +163,10 @@ namespace Cotizaciones
 
             _presentador.CrearTienda(nombre, direccion);
         }
-        #endregion
-
-
-        #region Lista de precios con Stock
-
         public List<string> MostrarPrendas()
         {
             return _presentador.MostrarPrendas();
         }
-
-        public void CrearPresentador()
-        {
-            _presentador = new Presentador();
-        }
-
 
         #endregion
     }
