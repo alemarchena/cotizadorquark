@@ -36,7 +36,7 @@ namespace EspacioModelo
 
         protected override void CalcularPrecio()
         {
-            _precio = Formula(_tipoManga,_tipoCuello, _calidad,_precioBase);
+            _preciocalculado = Formula(_tipoManga,_tipoCuello, _calidad,_precioBase);
         }
         public float CalcularPrecio(TipoManga tipoManga, TipoCuello tipoCuello, TipoCalidad calidad, float precio)
         {
@@ -54,6 +54,15 @@ namespace EspacioModelo
             return precioCalculado;
         }
 
+        /// <summary>
+        /// Determina el tipo de camisa segun su confección
+        /// </summary>
+        /// <param name="calidad"></param>
+        /// <param name="tipomanga"></param>
+        /// <param name="tipocuello"></param>
+        /// <param name="tmanga"></param>
+        /// <param name="tcuello"></param>
+        /// <param name="tcalidad"></param>
         public void DiscriminarPrenda(int calidad, int tipomanga, int tipocuello,ref TipoManga tmanga, ref TipoCuello tcuello, ref TipoCalidad tcalidad) 
         {
             if (tipomanga == 1 && tipocuello == 1 && calidad == 1)
@@ -82,7 +91,7 @@ namespace EspacioModelo
         }
 
         /// <summary>
-        /// Busca la cantidad de stock.
+        /// Busca un producto, evalúa si el stock alcanza para ser cotizado y lo actualiza
         /// Devuelve 0=No alcanza, 1=Si alcanza el stock.
         /// </summary>
         /// <param name="stockdisponible"></param>

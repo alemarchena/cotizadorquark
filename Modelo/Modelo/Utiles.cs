@@ -7,6 +7,9 @@ using System.Security.Cryptography;
 
 namespace EspacioModelo
 {
+    /// <summary>
+    /// Provee de tipos de datos y funcionalidad específica del sistema.
+    /// </summary>
     static class Utiles
     {
 
@@ -30,9 +33,8 @@ namespace EspacioModelo
         public float PrecioBase;
         public float PrecioCalculado;
         public float Total;
-
-        
     }
+
     public enum TipoPrenda { Pantalon, Camisa }
     public enum TipoCalidad { Standard, Premium }
     public enum EstiloPantalon { Comun,Chupin }

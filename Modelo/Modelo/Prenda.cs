@@ -20,9 +20,10 @@ namespace EspacioModelo
         protected int       _idPrenda;
         protected string    _descripcion;
         protected float     _precioBase;
+        protected float     _preciocalculado;
         protected int       _stock;
-        protected float     _precio;
         private string      _itemString;
+
         public TipoPrenda TipoPrenda { get => _tipoPrenda; }
         public TipoCalidad Calidad { get => _calidad; }
         public int IdPrenda { get => _idPrenda; }

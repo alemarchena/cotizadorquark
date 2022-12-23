@@ -31,7 +31,7 @@ namespace EspacioModelo
 
         protected override void CalcularPrecio()
         {
-            _precio =  Formula(_estilo, _calidad, _precioBase);
+            _preciocalculado =  Formula(_estilo, _calidad, _precioBase);
         }
 
         public float CalcularPrecio(EstiloPantalon estilo,TipoCalidad calidad,float precio)
@@ -39,6 +39,13 @@ namespace EspacioModelo
             return Formula(estilo,calidad,precio);
         }
 
+        /// <summary>
+        /// Determina el tipo de pantalón segun su confección
+        /// </summary>
+        /// <param name="estilo"></param>
+        /// <param name="calidad"></param>
+        /// <param name="epantalon"></param>
+        /// <param name="tcalidad"></param>
         public void DiscriminarPrenda(int estilo,int calidad,ref EstiloPantalon epantalon,ref TipoCalidad tcalidad)
         {
             if (estilo == 1 && calidad == 1)
@@ -54,6 +61,16 @@ namespace EspacioModelo
             { epantalon = EstiloPantalon.Chupin; tcalidad = TipoCalidad.Premium; }
         }
 
+        /// <summary>
+        /// Busca un producto, evalúa si el stock alcanza para ser cotizado y lo actualiza
+        /// Devuelve 0=No alcanza, 1=Si alcanza el stock.
+        /// </summary>
+        /// <param name="stockdisponible"></param>
+        /// <param name="prenda"></param>
+        /// <param name="tcalidad"></param>
+        /// <param name="testilo"></param>
+        /// <param name="cantidad"></param>
+        /// <returns></returns>
         public int BuscaryActualizarStock(ref int stockdisponible, ref Pantalon prenda, TipoCalidad tcalidad, EstiloPantalon testilo,int cantidad)
         {
             int _pudocotizar = 0;

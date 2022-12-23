@@ -7,7 +7,7 @@ namespace EspacioModelo
     {
         string      _idvendedor;
         string      _idcotizacion;
-        string    _fechahora;
+        string      _fechahora;
         Prenda      _prenda;
         int         _cantidad;
         float       _preciobase;

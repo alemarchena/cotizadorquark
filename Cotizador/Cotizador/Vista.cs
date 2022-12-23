@@ -136,7 +136,7 @@ namespace Cotizaciones
 
         }
 
-        public string MostrarIdHistorialVendedor()
+        public string Mostrar_IdHistorialVendedor()
         {
             return _presentador.MostrarIdHistorialVendedor();
         }

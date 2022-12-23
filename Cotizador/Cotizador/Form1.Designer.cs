@@ -426,6 +426,7 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(68, 20);
             this.txtCantidad.TabIndex = 21;
+            this.txtCantidad.Text = "1";
             this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // txtPrecioBase
@@ -627,9 +628,9 @@
             // btnHistorial
             // 
             this.btnHistorial.Enabled = false;
-            this.btnHistorial.Location = new System.Drawing.Point(326, 193);
+            this.btnHistorial.Location = new System.Drawing.Point(296, 192);
             this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(81, 23);
+            this.btnHistorial.Size = new System.Drawing.Size(95, 23);
             this.btnHistorial.TabIndex = 19;
             this.btnHistorial.Text = "Ver Historial";
             this.btnHistorial.UseVisualStyleBackColor = true;

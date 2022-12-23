@@ -31,7 +31,7 @@ namespace Cotizador
         {
 
             lblId.Text              = _vista.CrearVendedor(txtNombre.Text,txtApellido.Text).ToString();
-            lblHistorial.Text       = _vista.MostrarIdHistorialVendedor();
+            lblHistorial.Text       = _vista.Mostrar_IdHistorialVendedor();
             txtNombre.Text          = _vista.Nombre;
             txtApellido.Text        = _vista.Apellido;
 
